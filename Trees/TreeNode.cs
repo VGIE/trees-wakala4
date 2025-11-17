@@ -81,7 +81,7 @@ namespace Trees
         }
 
 
-
+        //Problema en la recursividad del Remove o el Find, no se cual de los dos.
 
         public void Remove(T value)
         {
@@ -96,8 +96,8 @@ namespace Trees
                 }
                 else
                 {
-                    child.Remove(i);
-                    
+                    child.Remove(value);
+                    i++;
                 }
             }
         }
@@ -107,16 +107,17 @@ namespace Trees
             //TODO #8: Return the node that contains this value (it might be this node or a child). Apply recursively
             if (this.Value.Equals(value))
             {
-                return this;
+            return this; 
             }
-            int numElements = 0;
+            
             for (int i = 0; i < Children.Count(); i++)
             {
-                TreeNode<T> child = Children.Get(numElements).Find(value);
-                child = child.Find(value);
-                if (child != null)
+                TreeNode<T> child = Children.Get(i);
+                TreeNode<T> foundNode = child.Find(value);
+
+                if (foundNode != null)
                 {
-                    return child;
+                    return foundNode;
                 }
             }
             return null;
@@ -126,15 +127,20 @@ namespace Trees
         public void Remove(TreeNode<T> node)
         {
             //TODO #9: Same as #6, but this method is given the specific node to remove, not the value
-            if (Children.Remove(node))
+            int i = 0;
+            while (i < Children.Count())
             {
-                return;
-            }
-            
-            for (int childIndex = 0; childIndex < Children.Count(); childIndex++)
-            {
-                Children.Get(childIndex).Remove(node);
-            }
+                TreeNode<T> child = Children.Get(i);
+                if (child == node)
+                {
+                    Children.Remove(i);
+                }
+                else
+                {
+                    child.Remove(node);
+                    i++;
+                }
+            }   
         }
     }
 }
