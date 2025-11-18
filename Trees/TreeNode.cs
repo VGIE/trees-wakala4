@@ -80,9 +80,6 @@ namespace Trees
             
         }
 
-
-        //Problema en la recursividad del Remove o el Find, no se cual de los dos.
-
         public void Remove(T value)
         {
             //TODO #7: Remove the child node that has Value=value. Apply recursively

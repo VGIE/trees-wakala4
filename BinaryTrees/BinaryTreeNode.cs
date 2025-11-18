@@ -49,8 +49,19 @@ namespace BinaryTrees
         public int Count()
         {
             //TODO #3: Return the total number of elements in this tree
+            int count = 1;
+
+            if (LeftChild != null)
+            {
+                count += LeftChild.Count();
+            }
+
+            if (RightChild != null)
+            {
+                count += RightChild.Count();
+            }
             
-            return 0;
+            return count;
             
         }
 
@@ -58,7 +69,19 @@ namespace BinaryTrees
         {
             //TODO #4: Return the height of this tree
             
-            return 0;
+            int leftHeight = 0;
+            if (LeftChild != null)
+            {
+                leftHeight = LeftChild.Height();
+            }
+
+            int rightHeight = 0;
+            if (RightChild != null)
+            {
+                rightHeight = RightChild.Height();
+            }
+            
+            return 1 + Math.Max(leftHeight, rightHeight);
             
         }
 
